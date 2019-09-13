@@ -135,7 +135,7 @@
 
 (cffi:defcfun ("csoundCompileOrc" csoundCompileOrc) :int
   (csound :pointer)
-  (orc :pointer))
+  (orc :string))
 
 (cffi:defcfun ("csoundEvalCode" csoundEvalCode) :double
   (csound :pointer)
@@ -156,7 +156,7 @@
 
 (cffi:defcfun ("csoundCompileCsd" csoundCompileCsd) :int
   (csound :pointer)
-  (csd-pathname :pointer))
+  (csd-pathname :string))
 
 (cffi:defcfun ("csoundCompileCsdText" csoundCompileCsdText) :int
   (csound :pointer)
@@ -212,7 +212,7 @@
 
 (cffi:defcfun ("csoundSetOption" csoundSetOption) :int
   (csound :pointer)
-  (option :pointer))
+  (option :string))
 
 (cffi:defcfun ("csoundGetOutputName" csoundGetOutputName) :pointer
   (csound :pointer))
@@ -278,7 +278,7 @@
 
 (cffi:defcfun ("csoundReadScore" csoundReadScore) :int
   (csound :pointer)
-  (score :pointer))
+  (score :string))
 
 ; (cffi:defcfun ("csoundGetScoreTime" csoundGetScoreTime) :double
   ; (csound :pointer))
