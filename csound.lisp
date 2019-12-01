@@ -283,6 +283,10 @@
   (csound :pointer)
   (score :string))
 
+(cffi:defcfun ("csoundCreateThread" csoundCreateThread) :void
+  (threadroutine :pointer)
+  (userdata :pointer))
+
 ;; (cffi:defcfun ("csoundGetScoreTime" csoundGetScoreTime) :double
 ;; (csound :pointer))
 
