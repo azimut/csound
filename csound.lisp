@@ -28,55 +28,55 @@
 ;; strings, created for example with (setq foreign-string
 ;; (cffi:foreign-string-alloc lisp-string))
 
-(defpackage :csound
+(uiop:define-package :csound
   (:use :common-lisp :cffi)
+  (:shadow #:compile)
   (:export
-   :csoundSetControlChannel
-   :csoundInitialize
-   :csoundCreate
-   :csoundDestroy
-   :csoundGetVersion
-   :csoundGetAPIVersion
-   :csoundCompileOrc
-   :csoundEvalCode
-   :csoundCompileArgs
-   :csoundStart
-   :csoundCompile
-   :csoundCompileCsd
-   :csoundCompileCsdText
-   :csoundPerform
-   :csoundPerformKsmps
-   :csoundPerformBuffer
-   :csoundStop
-   :csoundCleanup
-   :csoundReset
-   :csoundGetSr
-   :csoundGetKr
-   :csoundGetKsmps
-   :csoundGetNchnls
-   :csoundGetNchnlsInput
-   :csoundGet0dBFS
-   :csoundGetCurrentTimeSamples
-   :csoundGetSizeOfMYFLT
-   :csoundGetHostData
-   :csoundSetHostData
-   :csoundSetOption
-   :csoundGetOutputName
-   :csoundSetOutput
-   :csoundSetInput
-   :csoundSetMIDIInput
-   :csoundSetMIDIFileInput
-   :csoundSetMIDIFileOutput
-   :csoundSetRTAudioModule
-   :csoundGetInputBufferSize
-   :csoundGetOutputBufferSize
-   :csoundGetInputBuffer
-   :csoundGetOutputBuffer
-   :csoundGetSpin
-   :csoundGetSpout
-   :csoundGetSpoutSample
-   :csoundReadScore
-   ))
+   :set-control-channel
+   :initialize
+   :create
+   :destroy
+   :get-version
+   :get-api-version
+   :compile-orc
+   :eval-code
+   :compile-args
+   :start
+   :compile-csd
+   :compile-csd-text
+   :perform
+   :perform-ksmps
+   :perform-buffer
+   :stop
+   :cleanup
+   :reset
+   :get-sr
+   :get-kr
+   :get-ksmps
+   :get-nchnls
+   :get-nchnls-input
+   :get0d-bfs
+   :get-current-time-samples
+   :get-size-of-myflt
+   :get-host-data
+   :set-host-data
+   :set-option
+   :get-output-name
+   :set-output
+   :set-input
+   :set-midi-input
+   :set-midi-file-input
+   :set-midi-file-output
+   :set-rt-audio-module
+   :get-input-buffer-size
+   :get-output-buffer-size
+   :get-input-buffer
+   :get-output-buffer
+   :get-spin
+   :get-spout
+   :get-spout-sample
+   :read-score
+   :create-thread))
 
 (cffi:define-foreign-library libcsound64
   (:darwin "libcsound64.dylib")
@@ -118,151 +118,151 @@
 ;; (defun csoundMessage (csound control &rest values)
 ;; (cffi:foreign-funcall "csoundMessage" csound :pointer control :pointer &rest values :void))
 
-(cffi:defcfun ("csoundSetControlChannel" csoundSetControlChannel) :void
+(cffi:defcfun ("csoundSetControlChannel" set-control-channel) :void
   (csound :pointer)
   (name :pointer)
   (value :double))
 
-(cffi:defcfun ("csoundInitialize" csoundInitialize) :int
+(cffi:defcfun ("csoundInitialize" initialize) :int
   (flags :int))
 
-(cffi:defcfun ("csoundCreate" csoundCreate) :pointer
+(cffi:defcfun ("csoundCreate" create) :pointer
   (host-data :pointer))
 
-(cffi:defcfun ("csoundDestroy" csoundDestroy) :void
+(cffi:defcfun ("csoundDestroy" destroy) :void
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetVersion" csoundGetVersion) :int)
+(cffi:defcfun ("csoundGetVersion" get-version) :int)
 
-(cffi:defcfun ("csoundGetAPIVersion" csoundGetAPIVersion) :int)
+(cffi:defcfun ("csoundGetAPIVersion" get-api-version) :int)
 
-(cffi:defcfun ("csoundCompileOrc" csoundCompileOrc) :int
+(cffi:defcfun ("csoundCompileOrc" compile-orc) :int
   (csound :pointer)
   (orc :string))
 
-(cffi:defcfun ("csoundEvalCode" csoundEvalCode) :double
+(cffi:defcfun ("csoundEvalCode" eval-code) :double
   (csound :pointer)
   (orc :pointer))
 
-(cffi:defcfun ("csoundCompileArgs" csoundCompileArgs) :int
+(cffi:defcfun ("csoundCompileArgs" compile-args) :int
   (csound :pointer)
   (argc :int)
   (argv :pointer))
 
-(cffi:defcfun ("csoundStart" csoundStart) :int
+(cffi:defcfun ("csoundStart" start) :int
   (csound :pointer))
 
-(cffi:defcfun ("csoundCompile" csoundCompile) :int
+(cffi:defcfun ("csoundCompile" compile) :int
   (csound :pointer)
   (argc :int)
   (argv :pointer))
 
-(cffi:defcfun ("csoundCompileCsd" csoundCompileCsd) :int
+(cffi:defcfun ("csoundCompileCsd" compile-csd) :int
   (csound :pointer)
   (csd-pathname :string))
 
-(cffi:defcfun ("csoundCompileCsdText" csoundCompileCsdText) :int
+(cffi:defcfun ("csoundCompileCsdText" compile-csd-text) :int
   (csound :pointer)
   (csd-text :pointer))
 
-(cffi:defcfun ("csoundPerform" csoundPerform) :int
+(cffi:defcfun ("csoundPerform" perform) :int
   (csound :pointer))
 
-(cffi:defcfun ("csoundPerformKsmps" csoundPerformKsmps) :int
+(cffi:defcfun ("csoundPerformKsmps" perform-ksmps) :int
   (csound :pointer))
 
-(cffi:defcfun ("csoundPerformBuffer" csoundPerformBuffer) :int
+(cffi:defcfun ("csoundPerformBuffer" perform-buffer) :int
   (csound :pointer))
 
-(cffi:defcfun ("csoundStop" csoundStop) :void
+(cffi:defcfun ("csoundStop" stop) :void
   (csound :pointer))
 
-(cffi:defcfun ("csoundCleanup" csoundCleanup) :int
+(cffi:defcfun ("csoundCleanup" cleanup) :int
   (csound :pointer))
 
-(cffi:defcfun ("csoundReset" csoundReset) :void
+(cffi:defcfun ("csoundReset" reset) :void
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetSr" csoundGetSr) :double
+(cffi:defcfun ("csoundGetSr" get-sr) :double
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetKr" csoundGetKr) :double
+(cffi:defcfun ("csoundGetKr" get-kr) :double
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetKsmps" csoundGetKsmps) :int32
+(cffi:defcfun ("csoundGetKsmps" get-ksmps) :int32
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetNchnls" csoundGetNchnls) :int32
+(cffi:defcfun ("csoundGetNchnls" get-nchnls) :int32
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetNchnlsInput" csoundGetNchnlsInput) :int32
+(cffi:defcfun ("csoundGetNchnlsInput" get-nchnls-input) :int32
   (csound :pointer))
 
-(cffi:defcfun ("csoundGet0dBFS" csoundGet0dBFS) :double
+(cffi:defcfun ("csoundGet0dBFS" get0d-bfs) :double
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetCurrentTimeSamples" csoundGetCurrentTimeSamples) :int64
+(cffi:defcfun ("csoundGetCurrentTimeSamples" get-current-time-samples) :int64
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetSizeOfMYFLT" csoundGetSizeOfMYFLT) :int)
+(cffi:defcfun ("csoundGetSizeOfMYFLT" get-size-of-myflt) :int)
 
-(cffi:defcfun ("csoundGetHostData" csoundGetHostData) :pointer
+(cffi:defcfun ("csoundGetHostData" get-host-data) :pointer
   (csound :pointer))
 
-(cffi:defcfun ("csoundSetHostData" csoundSetHostData) :void
+(cffi:defcfun ("csoundSetHostData" set-host-data) :void
   (csound :pointer)
   (hostData :pointer))
 
-(cffi:defcfun ("csoundSetOption" csoundSetOption) :int
+(cffi:defcfun ("csoundSetOption" set-option) :int
   (csound :pointer)
   (option :string))
 
-(cffi:defcfun ("csoundGetOutputName" csoundGetOutputName) :pointer
+(cffi:defcfun ("csoundGetOutputName" get-output-name) :pointer
   (csound :pointer))
 
-(cffi:defcfun ("csoundSetOutput" csoundSetOutput) :void
+(cffi:defcfun ("csoundSetOutput" set-output) :void
   (csound :pointer)
   (nayme :pointer)
   (tipe :pointer)
   (format :pointer))
 
-(cffi:defcfun ("csoundSetInput" csoundSetInput) :void
+(cffi:defcfun ("csoundSetInput" set-input) :void
   (csound :pointer)
   (nayme :pointer))
 
-(cffi:defcfun ("csoundSetMIDIInput" csoundSetMIDIInput) :void
+(cffi:defcfun ("csoundSetMIDIInput" set-midi-input) :void
   (csound :pointer)
   (nayme :pointer))
 
-(cffi:defcfun ("csoundSetMIDIFileInput" csoundSetMIDIFileInput) :void
+(cffi:defcfun ("csoundSetMIDIFileInput" set-midi-file-input) :void
   (csound :pointer)
   (nayme :pointer))
 
-(cffi:defcfun ("csoundSetMIDIOutput" csoundSetMIDIOutput) :void
+(cffi:defcfun ("csoundSetMIDIOutput" set-midi-output) :void
   (csound :pointer)
   (nayme :pointer))
 
-(cffi:defcfun ("csoundSetMIDIFileOutput" csoundSetMIDIFileOutput) :void
+(cffi:defcfun ("csoundSetMIDIFileOutput" set-midi-file-output) :void
   (csound :pointer)
   (nayme :pointer))
 
-(cffi:defcfun ("csoundSetRTAudioModule" csoundSetRTAudioModule) :void
+(cffi:defcfun ("csoundSetRTAudioModule" set-rt-audio-module) :void
   (csound :pointer)
   (moduule :pointer))
 
-(cffi:defcfun ("csoundGetInputBufferSize" csoundGetInputBufferSize) :long
+(cffi:defcfun ("csoundGetInputBufferSize" get-input-buffer-size) :long
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetOutputBufferSize" csoundGetOutputBufferSize) :long
+(cffi:defcfun ("csoundGetOutputBufferSize" get-output-buffer-size) :long
   (csound :pointer))
 
  (cffi:defcfun ("csoundGetInputBuffer" csoundGetInputBuffer) :pointer
    (csound :pointer))
 
-(cffi:defcfun ("csoundGetOutputBuffer" csoundGetOutputBuffer) :pointer
+(cffi:defcfun ("csoundGetOutputBuffer" get-output-buffer) :pointer
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetSpin" csoundGetSpin) :pointer
+(cffi:defcfun ("csoundGetSpin" get-spin) :pointer
   (csound :pointer))
 
 ;; (cffi:defcfun ("csoundAddSpinSample" csoundAddSpinSample) :void
@@ -271,19 +271,19 @@
 ;; (channel :int)
 ;; (sample :float))
 
-(cffi:defcfun ("csoundGetSpout" csoundGetSpout) :pointer
+(cffi:defcfun ("csoundGetSpout" get-spout) :pointer
   (csound :pointer))
 
-(cffi:defcfun ("csoundGetSpoutSample" csoundGetSpoutSample) :double
+(cffi:defcfun ("csoundGetSpoutSample" get-spout-sample) :double
   (csound :pointer)
   (frame :int)
   (channel :int))
 
-(cffi:defcfun ("csoundReadScore" csoundReadScore) :int
+(cffi:defcfun ("csoundReadScore" read-score) :int
   (csound :pointer)
   (score :string))
 
-(cffi:defcfun ("csoundCreateThread" csoundCreateThread) :void
+(cffi:defcfun ("csoundCreateThread" create-thread) :void
   (threadroutine :pointer)
   (userdata :pointer))
 
