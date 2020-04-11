@@ -38,7 +38,7 @@ install:
   --eval "(sb-ext:exit)"; else sbcl --disable-debugger --eval "(load \"quicklisp/setup.lisp\")"
   --eval "(ql-util:without-prompting (ql:add-to-init-file))" --eval "(sb-ext:exit)";
   rm -rf ~/quicklisp/local-projects; mkdir ~/quicklisp/local-projects; fi
-- if [ "$TRAVIS_OS_NAME" = "osx" ]; then HOMEBREW_NO_AUTO_UPDATE=1 brew install csound; fi
+- if [ "$TRAVIS_OS_NAME" = "osx" ]; then HOMEBREW_NO_AUTO_UPDATE=1 brew install csound; ls -l /usr/local/opt/csound/lib/*; fi
 - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt
   update; sudo apt install csound libcsound64-6.0; fi
 - |
@@ -55,4 +55,4 @@ install:
 - mv $SOURCE_DIR ~/quicklisp/local-projects
 script:
 - sbcl --disable-debugger --eval "(ql:update-all-dists)" --eval "(sb-ext:exit)"
-- sbcl --disable-debugger --eval "(ql:quickload :csound)" --eval "(sb-ext:exit)"
+- sbcl --disable-debugger --eval "(progn (pushnew #P\"/usr/local/opt/csound/lib/\" *foreign-library-directories* :test #'equal) (ql:quickload :csound))" --eval "(sb-ext:exit)"
