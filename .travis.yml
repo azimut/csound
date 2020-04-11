@@ -55,4 +55,5 @@ install:
 - mv $SOURCE_DIR ~/quicklisp/local-projects
 script:
 - sbcl --disable-debugger --eval "(ql:update-all-dists)" --eval "(sb-ext:exit)"
-- sbcl --disable-debugger --eval '(pushnew #P\"/usr/local/opt/csound/lib/\" *foreign-library-directories* :test #\'equal)' --eval '(ql:quickload :csound)' --eval "(sb-ext:exit)"
+- |
+  sbcl --disable-debugger --eval '(pushnew #P"/usr/local/opt/csound/lib/" *foreign-library-directories* :test #\'equal)' --eval '(ql:quickload :csound)' --eval "(sb-ext:exit)"
