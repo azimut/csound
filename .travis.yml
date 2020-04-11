@@ -38,11 +38,6 @@ install:
   --eval "(sb-ext:exit)"; else sbcl --disable-debugger --eval "(load \"quicklisp/setup.lisp\")"
   --eval "(ql-util:without-prompting (ql:add-to-init-file))" --eval "(sb-ext:exit)";
   rm -rf ~/quicklisp/local-projects; mkdir ~/quicklisp/local-projects; fi
-- |
-  cd ~/quicklisp/local-projects
-  git config --global core.autocrlf false
-  git clone --depth=50 https://github.com/azimut/csound
-  cd ~
 - if [ "$TRAVIS_OS_NAME" = "osx"   -a ! -f "$HOME/sbcl/bin/sbcl" ]; then HOMEBREW_NO_AUTO_UPDATE=1
   brew install csound; fi
 - if [ "$TRAVIS_OS_NAME" = "linux" -a ! -f "$HOME/sbcl/bin/sbcl" ]; then sudo apt
