@@ -56,4 +56,4 @@ install:
 script:
 - sbcl --disable-debugger --eval "(ql:update-all-dists)" --eval "(sb-ext:exit)"
 - |
-  sbcl --disable-debugger --eval "(ql:quickload :cffi)" --eval "(pushnew #P\"/usr/local/opt/csound/lib/\" *foreign-library-directories* :test #'equal)" --eval '(ql:quickload :csound)' --eval "(sb-ext:exit)"
+  sbcl --disable-debugger --eval "(ql:quickload :cffi)" --eval "(pushnew #P\"/usr/local/opt/csound/lib/\" cffi:*foreign-library-directories* :test #'equal)" --eval '(ql:quickload :csound)' --eval "(sb-ext:exit)"
