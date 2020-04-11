@@ -79,7 +79,7 @@
    #:set-control-channel))
 
 (cffi:define-foreign-library libcsound64
-  (:darwin "libcsound64.dylib")
+  (:darwin "libcsnd6.dylib")
   (:unix (:or "libcsound64.so" "libcsound64.so.6.0"))
   (:windows "csound64.dll")
   (t (:default "libcsound64")))
