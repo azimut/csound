@@ -120,7 +120,7 @@
 
 (cffi:defcfun ("csoundSetControlChannel" set-control-channel) :void
   (csound :pointer)
-  (name :pointer)
+  (name :string)
   (value :double))
 
 (cffi:defcfun ("csoundInitialize" initialize) :int
