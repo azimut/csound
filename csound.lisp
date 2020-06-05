@@ -120,8 +120,8 @@
 
 (cffi:defcfun ("csoundSetControlChannel" set-control-channel) :void
   (csound :pointer)
-  (name :string)
-  (value :double))
+  (name   :string)
+  (value  :double))
 
 (cffi:defcfun ("csoundInitialize" initialize) :int
   (flags :int))
@@ -138,31 +138,31 @@
 
 (cffi:defcfun ("csoundCompileOrc" compile-orc) :int
   (csound :pointer)
-  (orc :string))
+  (orc    :string))
 
 (cffi:defcfun ("csoundEvalCode" eval-code) :double
   (csound :pointer)
-  (orc :pointer))
+  (orc    :pointer))
 
 (cffi:defcfun ("csoundCompileArgs" compile-args) :int
   (csound :pointer)
-  (argc :int)
-  (argv :pointer))
+  (argc   :int)
+  (argv   :pointer))
 
 (cffi:defcfun ("csoundStart" start) :int
   (csound :pointer))
 
 (cffi:defcfun ("csoundCompile" compile) :int
   (csound :pointer)
-  (argc :int)
-  (argv :pointer))
+  (argc   :int)
+  (argv   :pointer))
 
 (cffi:defcfun ("csoundCompileCsd" compile-csd) :int
-  (csound :pointer)
+  (csound       :pointer)
   (csd-pathname :string))
 
 (cffi:defcfun ("csoundCompileCsdText" compile-csd-text) :int
-  (csound :pointer)
+  (csound   :pointer)
   (csd-text :pointer))
 
 (cffi:defcfun ("csoundPerform" perform) :int
@@ -210,7 +210,7 @@
   (csound :pointer))
 
 (cffi:defcfun ("csoundSetHostData" set-host-data) :void
-  (csound :pointer)
+  (csound   :pointer)
   (hostData :pointer))
 
 (cffi:defcfun ("csoundSetOption" set-option) :int
@@ -222,32 +222,32 @@
 
 (cffi:defcfun ("csoundSetOutput" set-output) :void
   (csound :pointer)
-  (nayme :pointer)
-  (tipe :pointer)
+  (nayme  :pointer)
+  (tipe   :pointer)
   (format :pointer))
 
 (cffi:defcfun ("csoundSetInput" set-input) :void
   (csound :pointer)
-  (nayme :pointer))
+  (nayme  :pointer))
 
 (cffi:defcfun ("csoundSetMIDIInput" set-midi-input) :void
   (csound :pointer)
-  (nayme :pointer))
+  (nayme  :pointer))
 
 (cffi:defcfun ("csoundSetMIDIFileInput" set-midi-file-input) :void
   (csound :pointer)
-  (nayme :pointer))
+  (nayme  :pointer))
 
 (cffi:defcfun ("csoundSetMIDIOutput" set-midi-output) :void
   (csound :pointer)
-  (nayme :pointer))
+  (nayme  :pointer))
 
 (cffi:defcfun ("csoundSetMIDIFileOutput" set-midi-file-output) :void
   (csound :pointer)
-  (nayme :pointer))
+  (nayme  :pointer))
 
 (cffi:defcfun ("csoundSetRTAudioModule" set-rt-audio-module) :void
-  (csound :pointer)
+  (csound  :pointer)
   (moduule :pointer))
 
 (cffi:defcfun ("csoundGetInputBufferSize" get-input-buffer-size) :long
@@ -275,17 +275,17 @@
   (csound :pointer))
 
 (cffi:defcfun ("csoundGetSpoutSample" get-spout-sample) :double
-  (csound :pointer)
-  (frame :int)
+  (csound  :pointer)
+  (frame   :int)
   (channel :int))
 
 (cffi:defcfun ("csoundReadScore" read-score) :int
   (csound :pointer)
-  (score :string))
+  (score  :string))
 
 (cffi:defcfun ("csoundCreateThread" create-thread) :void
   (threadroutine :pointer)
-  (userdata :pointer))
+  (userdata      :pointer))
 
 ;; (cffi:defcfun ("csoundGetScoreTime" csoundGetScoreTime) :double
 ;; (csound :pointer))
